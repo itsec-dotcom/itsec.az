@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - iTSEC.AZ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-warning shadow-sm">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <span class="text-danger">i</span><span class="text-warning">TSEC</span><span class="text-danger">.AZ</span>
+            </a>
+            <div class="ms-auto">
+                <a href="index.html" class="btn btn-outline-danger btn-sm">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card border-danger shadow">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-user-plus"></i> Create Your Account
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <!-- Full Name -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Full Name</label>
+                            <input type="text" class="form-control" id="registerName" placeholder="Your full name">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Email Address</label>
+                            <input type="email" class="form-control" id="registerEmail" placeholder="your@email.com">
+                            <small class="text-muted">We'll never share your email.</small>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Phone Number</label>
+                            <input type="tel" class="form-control" id="registerPhone" placeholder="+994 XX XXX XX XX">
+                        </div>
+
+                        <!-- Company (Optional) -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Company Name (Optional)</label>
+                            <input type="text" class="form-control" id="registerCompany" placeholder="Your company">
+                        </div>
+
+                        <!-- User Type -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Account Type</label>
+                            <select class="form-select" id="registerRole">
+                                <option value="customer" selected>Customer (Retail)</option>
+                                <option value="wholesaler">Wholesaler (Bulk Buyer)</option>
+                            </select>
+                            <small class="text-muted">You can change this later from your dashboard</small>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="registerPassword" placeholder="Enter password">
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('registerPassword')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">At least 6 characters</small>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Confirm Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="registerPasswordConfirm" placeholder="Confirm password">
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('registerPasswordConfirm')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Terms & Conditions -->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms">
+                            <label class="form-check-label" for="agreeTerms">
+                                I agree to Terms & Conditions
+                            </label>
+                        </div>
+
+                        <!-- Register Button -->
+                        <button class="btn btn-danger w-100 mb-3" onclick="handleRegister()">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+
+                        <!-- Social Register -->
+                        <div class="mb-3">
+                            <small class="text-muted d-block text-center mb-2">Or register with</small>
+                            <button class="btn btn-light w-100 border">
+                                <i class="fab fa-google text-danger"></i> Sign up with Google
+                            </button>
+                        </div>
+
+                        <!-- Divider -->
+                        <hr class="border-warning">
+
+                        <!-- Login Link -->
+                        <p class="text-center text-muted mb-0">
+                            Already have an account? <a href="login.html" class="text-danger fw-bold">Login</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Benefits -->
+                <div class="alert alert-success mt-4">
+                    <h6 class="alert-heading"><i class="fas fa-check-circle"></i> Benefits:</h6>
+                    <ul class="mb-0 small">
+                        <li>Access exclusive product catalog</li>
+                        <li>Role-based pricing (Retail/Wholesale)</li>
+                        <li>Order tracking & history</li>
+                        <li>24/7 customer support</li>
+                        <li>Special promotions for wholesalers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5 position-fixed bottom-0 w-100">
+        <div class="container">
+            <p class="text-center small mb-0">&copy; 2024 iTSEC.AZ & ProSecurity. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            field.type = field.type === 'password' ? 'text' : 'password';
+        }
+
+        function handleRegister() {
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const phone = document.getElementById('registerPhone').value.trim();
+            const company = document.getElementById('registerCompany').value.trim();
+            const role = document.getElementById('registerRole').value;
+            const password = document.getElementById('registerPassword').value;
+            const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+
+            // Validation
+            if (!name || !email || !phone || !password || !passwordConfirm) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters');
+                return;
+            }
+
+            if (password !== passwordConfirm) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            if (!agreeTerms) {
+                alert('You must agree to Terms & Conditions');
+                return;
+            }
+
+            // Create user object
+            const newUser = {
+                id: Date.now().toString(),
+                name: name,
+                email: email,
+                phone: phone,
+                company: company,
+                role: role,
+                password: password,
+                createdAt: new Date().toLocaleString()
+            };
+
+            // Save to localStorage
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Check if email already exists
+            if (users.some(u => u.email === email)) {
+                alert('Email already registered. Please use login or try another email.');
+                return;
+            }
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Auto login
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userRole', role);
+            localStorage.setItem('isLoggedIn', 'true');
+
+            alert('Account created successfully! Welcome ' + name);
+            window.location.href = 'dashboard.html';
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Allow Enter key to register
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('registerPasswordConfirm').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleRegister();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
